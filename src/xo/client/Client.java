@@ -1,8 +1,6 @@
 package xo.client;
 
-import xo.client.command.ChatCommand;
-import xo.client.command.ListChatCommand;
-import xo.client.command.PrivateChatCommand;
+import xo.client.command.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +31,8 @@ public class Client {
         commands = new ArrayList<>();
         commands.add(new ListChatCommand());
         commands.add(new PrivateChatCommand());
+        commands.add(new ExitChatCommand());
+        commands.add(new DefaultChatCommand());
     }
 
     public void start() throws IOException {
@@ -50,23 +50,19 @@ public class Client {
 
         String message;
         while ((message = console.readLine()) != null) {
+            String result = null;
             for (ChatCommand command : commands) {
-                String result = command.process(message);
+                result = command.process(message);
                 if (result != null) {
                     out.println(result);
                     break;
                 }
             }
 
+            if ("9".equals(result)){
+                break;
+            }
 
-
-
-
-
-            out.write(1);
-            out.println(message);
-            if (message.equalsIgnoreCase("close")) break;
-            if (message.equalsIgnoreCase("exit")) break;
         }
 
         close();
