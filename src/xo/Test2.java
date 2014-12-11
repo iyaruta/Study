@@ -10,24 +10,17 @@ import java.util.HashSet;
  */
 public class Test2 {
     public static void main(String[] args) {
-        Collection<String> collection = new HashSet<>();
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("a");
-        collection.add("b");
-        collection.add("c");
-        collection.add("d");
-
-        for (String name :collection){
-            System.out.println(name);
-
+       int n = 2;
+        switch (n) {
+            case 1:
+                System.out.println("One");
+                break;
+            case 2:
+                System.out.println("Two");
+                break;
+            default:
+                System.out.println("No value");
         }
-
     }
 
 }

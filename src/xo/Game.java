@@ -25,22 +25,40 @@ public class Game implements Runnable {
                     BufferedReader in = player.in;
                     PrintWriter out = player.out;
 
-                    int operation = in.read();
-                    String message;
-                    if (operation == 9) {
-                        message = entry.getKey() + " leave us";
-                        send(message);
-                        shutdown(player);
-                        players.remove(entry.getKey());
-                    } else {
-                        if (in.ready()) {
-                            String input = in.readLine();
-                            message = entry.getKey() + ": " + input;
-                            send(message);
-                        }
+                    String request = in.readLine();
+                    if (request.isEmpty()) {
+                        continue;
                     }
 
-
+                    int operation = Integer.valueOf(request.substring(0, 1));
+                    switch (operation) {
+                        case 2:
+                            out.println(list());
+                            break;
+                        case 3:
+                            String rq = request.substring(1);
+                            String[] privateRequest = rq.split("\\$");
+                            Player recipient = players.get(privateRequest[0]);
+                            if (recipient == null) {
+                                out.println("User not found");
+                            } else {
+                                recipient.out.println(entry.getKey() + ": " + privateRequest[1]);
+                                out.println(entry.getKey() + ": " + privateRequest[1]);
+                            }
+                            break;
+                        case 4:
+                            String publicMessage = request.substring(1);
+                            send(entry.getKey() + ": " + publicMessage);
+                            break;
+                        case 9:
+                            String message = entry.getKey() + " leave us";
+                            send(message);
+                            shutdown(player);
+                            players.remove(entry.getKey());
+                            break;
+                        default:
+                            out.println("Error: invalid message");
+                    }
                 }
             }
         } catch (Exception e) {
@@ -67,6 +85,15 @@ public class Game implements Runnable {
         String username = player.in.readLine();
         players.put(username, player);
         player.out.println("Welcome " + username);
+    }
+
+    private String list() {
+        String result = "Users online: ";
+        for (String username : players.keySet()) {
+            result += username + " | ";
+        }
+
+        return result;
     }
 
     private static class Player {
