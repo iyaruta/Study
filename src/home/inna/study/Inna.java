@@ -9,24 +9,15 @@ import java.util.Scanner;
  * Date: 25.10.2014
  */
 public class Inna {
+    public static void main(String[] args){
+        int yasya = 3;
+        int in = 4;
+        Mobile mobile = new Mobile(yasya, in);
 
-    int[] game;
-
-    public Inna() {
-        game = new int[]{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,};
-    }
-
-    public void print() {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j <= i; j++) {
-                if (game[i] == 2) {
-                    System.out.println("_ ");
-                }
-            }
-        }
-    }
-    public void cross() {
-        Scanner sc = new Scanner(System.in);
+        System.out.println(mobile.next());
+        System.out.println(mobile.next());
+        System.out.println(mobile.next());
 
     }
+
 }

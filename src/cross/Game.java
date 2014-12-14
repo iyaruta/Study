@@ -9,9 +9,10 @@ public class Game {
     private int h;
     private Player playerX;
     private Player playerO;
-    private Player currentPlayer;
+    private Player currentPlayer;         // опесание класа
     private Player[] field;
     private boolean gameOver;
+    private int steps;
 
     public Game(int w, int h) {
         field = new Player[w * h];
@@ -44,11 +45,16 @@ public class Game {
         int i = w * y + x;
         if (isValid(x, y) && field[i] == null) {
             field[i] = currentPlayer;
-            if (isWin(x, y, currentPlayer)) {
+            if (isWin(x, y, currentPlayer)){
                 System.out.println("YOU ARE WIIIIIIIN!!!!");
                 gameOver = true;
             } else {
                 currentPlayer = next();
+            }
+            steps++;
+            if (steps == w * h) {
+                gameOver = true;
+                System.out.println("No winners");
             }
             return true;
         } else {
@@ -72,12 +78,6 @@ public class Game {
         currentPlayer = playerX;
     }
 
-    /*
-     * метод проверки победы, думаем правильно
-     * 1. Какие параметры? - Координаты хода и игрок
-     * 2. Что проверяем? - вертикаль, горизонталь и диагонали
-     * 3. Что возвращаем? - true - если победил, false - если нет
-     */
     private boolean isWin(int x, int y, Player p) {
         return count(x, y, p, 0, 1) >= 3
                 || count(x, y, p, 1, 0) >= 3

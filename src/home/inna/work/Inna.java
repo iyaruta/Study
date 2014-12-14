@@ -9,16 +9,16 @@ import home.inna.work.test.Test;
  */
 public class Inna {
 
-    public static void main(String[] args) {
-        Inna inna = new Inna();
-        home.inna.study.Inna inna2 = new home.inna.study.Inna();
+//    public static void main(String[] args) {
+//        Inna inna = new Inna();
+//        home.inna.study.Inna inna2 = new home.inna.study.Inna();
 
-        Mobile mob = new Mobile();
-        book.Mobile mobile = new book.Mobile();
+//        Mobile mob = new Mobile();
+//        book.Mobile mobile = new book.Mobile();
+//
+//        Andrey andrey = new Andrey();
 
-        Andrey andrey = new Andrey();
-
-        Test test = new Test();
-    }
+//        Test test = new Test();
+//  }
 
 }

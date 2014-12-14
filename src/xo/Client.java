@@ -28,8 +28,10 @@ public class Client {
             out.println(message);
             if (message.equalsIgnoreCase("close")) break;
             if (message.equalsIgnoreCase("exit")) break;
+//            if (message.equalsIgnoreCase("private")) break;
         }
 
+//        out.write(2);
         out.write(9);
         out.flush();
         out.close();

@@ -27,6 +27,11 @@ public class Game implements Runnable {
 
                     int operation = in.read();
                     String message;
+//                    if (operation == 2){
+//                        String input = in.readLine();
+//                        message =entry.getKey() + ":" + input;
+//                        send(message);
+//                    }
                     if (operation == 9) {
                         message = entry.getKey() + " leave us";
                         send(message);
